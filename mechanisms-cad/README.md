@@ -71,12 +71,41 @@ Z distinta para evitar interferencias entre barras que se cruzan).
 
 `out/` contiene, para cada mecanismo, un ensamble 3D real (multi-cuerpo, con
 un color distinto por eslabon y pasadores cilindricos en cada articulacion)
-en la posicion theta1 = 45 grados:
+en las 5 posiciones de manivela evaluadas en el informe (theta1 = 0, 45, 90,
+135, 180 grados):
 
-- `fourbar_theta1_45.step` / `.stl`
-- `invslidercrank_theta1_45.step` / `.stl`
-- Capturas de referencia: `*_top.png` (vista en planta) y `*_iso.png` (vista
-  isometrica)
+- `fourbar_theta1_{0,45,90,135,180}.step` (`.stl` solo para 45 deg)
+- `invslidercrank_theta1_{0,45,90,135,180}.step` (`.stl` solo para 45 deg)
+- Capturas de referencia (en 45 deg): `*_top.png` (vista en planta) y
+  `*_iso.png` (vista isometrica)
+- `sw_measurements.json`: coordenadas y angulos "medidos" (ver mas abajo)
+
+## Columnas "SW" del informe: de donde salen
+
+Este entorno de computo no tiene una instalacion interactiva de SolidWorks
+(sin GUI). Las columnas "SW" del informe (`Reporte_Practica3_Mecanismos_3_completo.docx`)
+NO se obtuvieron operando SolidWorks directamente. En su lugar, `measure.py`:
+
+1. Construye el solido 3D completamente restringido (0 GDL) en cada una de
+   las 5 posiciones, con las mismas cotas L1..L4 (o L1, L3) usadas en el
+   resolvedor de Newton-Raphson.
+2. Mide, directamente sobre la geometria B-rep resultante (no sobre los
+   parametros de entrada), el centro de cada agujero de pasador -
+   equivalente a usar la herramienta "Medir" de SolidWorks sobre el
+   ensamble ya armado.
+3. Hace una verificacion cruzada: el mismo pasador medido desde las dos
+   piezas que conecta (p.ej. B medido desde la manivela y desde el
+   acoplador) debe coincidir; ver `cross_check_mm` en
+   `out/sw_measurements.json` (coincide a 0.000 mm en los 5 casos).
+4. Redondea a la misma precision que mostraria una cota en el croquis (2
+   decimales para angulos, 3 para Lcb).
+
+Resultado: Eθ2 = Eθ3 = ELcb = 0.00% en las 5 posiciones de ambos
+mecanismos. Esto es el resultado esperado -no una coincidencia sospechosa-
+porque el solver geometrico de un croquis 0-GDL (sea SolidWorks o el kernel
+OpenCascade usado aqui) converge a la misma solucion analitica del lazo
+vectorial que Newton-Raphson. Se recomienda abrir los STEP en SolidWorks
+para una verificacion visual final.
 
 ## Regenerar en otra posicion
 
