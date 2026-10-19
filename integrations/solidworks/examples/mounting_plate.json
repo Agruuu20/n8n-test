@@ -1,0 +1,16 @@
+[
+  {"tool": "create_part",    "args": {"name": "mounting_plate"}},
+  {"tool": "create_sketch",  "args": {"plane": "Front"}},
+  {"tool": "add_rectangle",  "args": {"x1": -60, "y1": -40, "x2": 60, "y2": 40}},
+  {"tool": "exit_sketch"},
+  {"tool": "create_extrusion", "args": {"sketch_name": "Sketch1", "depth": 8}},
+  {"tool": "create_sketch",  "args": {"plane": "Front"}},
+  {"tool": "add_circle",     "args": {"center_x": -50, "center_y": -30, "radius": 5}},
+  {"tool": "add_circle",     "args": {"center_x": 50,  "center_y": -30, "radius": 5}},
+  {"tool": "add_circle",     "args": {"center_x": -50, "center_y": 30,  "radius": 5}},
+  {"tool": "add_circle",     "args": {"center_x": 50,  "center_y": 30,  "radius": 5}},
+  {"tool": "exit_sketch"},
+  {"tool": "create_cut_extrude", "args": {"sketch_name": "Sketch2", "depth": 8}},
+  {"tool": "get_mass_properties", "args": {}},
+  {"tool": "save_as", "args": {"file_path": "C:\\Temp\\mcp_demo\\mounting_plate.sldprt"}}
+]

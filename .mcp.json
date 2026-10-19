@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "solidworks-mock": {
+      "command": "bash",
+      "args": ["integrations/solidworks/run-mock.sh"]
+    }
+  }
+}

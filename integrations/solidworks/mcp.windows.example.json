@@ -1,0 +1,14 @@
+{
+  "_comment": "Copy to .mcp.json (or merge into your existing one) on the WINDOWS machine that has SolidWorks. Replace C:\\path\\to with your clone of SolidworksMCP-python. Open SolidWorks first. --real is mandatory: without it the server runs in mock mode.",
+  "mcpServers": {
+    "solidworks": {
+      "command": "C:\\path\\to\\SolidworksMCP-python\\.venv\\Scripts\\python.exe",
+      "args": [
+        "C:\\path\\to\\SolidworksMCP-python\\src\\utils\\start_local_server_claude.py",
+        "--real",
+        "--year",
+        "2026"
+      ]
+    }
+  }
+}
